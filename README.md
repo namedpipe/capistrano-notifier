@@ -55,6 +55,25 @@ set :notifier_mail_options, {
 }
 ```
 
+## New Relix
+
+This notifier can be useful if you're using [New Relic](https://newrelic.com/) but not [using the Ruby agent](https://newrelic.com/docs/ruby/recording-deployments-with-the-ruby-agent) (so you don't have the rpm_newrelic gem installed or a config/newrelic.yml file.)
+
+```rb
+require 'capistrano/notifier/new_relic'
+
+set :notifier_new_relic_options, {
+  :api_key => 'fffffffffffffffffffffffffffffffffffffffffffffff',
+  :application_id => 1234567
+}
+```
+
+Both `:api_key` and `:application_id` must be present. If you set a `NOTES` environment variable:
+
+    cap deploy NOTES="fix everything"
+
+The notes will be added as the deployment description.
+
 ## StatsD
 
 ```rb
