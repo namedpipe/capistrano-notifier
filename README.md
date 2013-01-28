@@ -55,7 +55,7 @@ set :notifier_mail_options, {
 }
 ```
 
-## New Relix
+## New Relic
 
 This notifier can be useful if you're using [New Relic](https://newrelic.com/) but not [using the Ruby agent](https://newrelic.com/docs/ruby/recording-deployments-with-the-ruby-agent) (so you don't have the rpm_newrelic gem installed or a config/newrelic.yml file.)
 
