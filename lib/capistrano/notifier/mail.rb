@@ -24,6 +24,7 @@ class Capistrano::Notifier::Mailer < ActionMailer::Base
       from from
       subject subject
       recipients to
+      content_type "text/html"
     end
   end
 
@@ -71,15 +72,19 @@ class Capistrano::Notifier::Mail < Capistrano::Notifier::Base
 
   def body
     <<-BODY.gsub(/^ {6}/, '')
-      #{user_name} deployed
-      #{application.titleize} branch
-      #{branch} to
-      #{stage} on
-      #{now.strftime("%m/%d/%Y")} at
-      #{now.strftime("%I:%M %p %Z")}
+<pre>
+DEPLOYER:     #{user_name}
+BRANCH:       #{branch}
+ENVIRONMENT:  #{stage}
+WHEN:         #{now.strftime("%m/%d/%Y")} at #{now.strftime("%I:%M %p %Z")}
 
-      #{git_range}
-      #{git_log}
+#{git_range}
+
+CHANGES
+============================
+
+#{git_log}
+</pre>
     BODY
   end
 
