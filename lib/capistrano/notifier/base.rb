@@ -43,6 +43,7 @@ class Capistrano::Notifier::Base
 
   def stage
     cap.stage if cap.respond_to? :stage
+    cap.rails_env if cap.respond_to? :rails_env
   end
 
   def user_name
